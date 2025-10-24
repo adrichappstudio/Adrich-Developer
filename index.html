@@ -82,8 +82,8 @@
         }
 
         .profile-pic {
-            width: 350px;
-            height: 350px;
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
             border: 4px solid var(--primary);
             background-image: url('adrich_dp.png');
@@ -155,6 +155,22 @@
             padding: 20px;
         }
 
+        .download-btn {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            padding: 10px 20px;
+            margin-top: 15px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .download-btn:hover {
+            background: #1ed760;
+            transform: scale(1.05);
+        }
+
         iframe {
             width: 100%;
             height: 350px;
@@ -217,7 +233,7 @@
                     Studio</strong>. I'm a devoted member of the <strong>Seventh-Day Adventist Church - Kapeeka
                     District</strong> where I joyfully serves as a <strong>Publishing Ministry Leader</strong>.</p>
             <p>Through my technical skill and spiritual dedication, I design faith-based applications that
-                inspire, educate, and uplift. My projects reflect a deep love for God, creativity, and excellence —
+                inspire, educate, and uplift. My projects reflect a deep love for God, creativity, and excellence — 
                 combining technology with purpose to touch lives.</p>
         </div>
 
@@ -243,11 +259,17 @@
                     <p>A modern Christian music streaming app for church choirs and gospel lovers. Built using Firebase,
                         Flutter , and Kotlin — delivering seamless listening with faith-centered design.</p>
                 </div>
+
                 <div class="portfolio-item">
                     <h3>Enjigiriza Ya Baibuli App</h3>
                     <p>A beautiful Bible study app designed to make Scripture study engaging and accessible. Created
                         with love for the SDA community, featuring clean UI and offline access.</p>
+                    <!-- ✅ Download Button -->
+                    <a href="enjigiriza_latest.apk" class="download-btn" download>
+                        <i class="fa-solid fa-download"></i> Download Latest Version
+                    </a>
                 </div>
+
                 <div class="portfolio-item">
                     <h3>More Coming Soon</h3>
                     <p>Adrich continues to create purpose-driven apps that blend innovation with spiritual impact. Stay
@@ -256,7 +278,7 @@
             </div>
         </div>
 
-        <!-- ✅ Contact card moved here below portfolio -->
+        <!-- ✅ Contact card -->
         <div class="card">
             <h2>Contact</h2>
             <p>📧 <a href="mailto:adrichappstudio@gmail.com">adrichappstudio@gmail.com</a></p>
@@ -293,8 +315,4 @@
         applyTheme();
     </script>
 </body>
-
-
 </html>
-
-
