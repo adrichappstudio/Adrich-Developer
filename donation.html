@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Special Announcement | Adrich App Studio</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --primary: #1db954;
+    --accent: #00ffb3;
+    --card-radius: 20px;
+    --shadow-light: 0 5px 20px rgba(0,0,0,0.1);
+    --shadow-dark: 0 0 20px rgba(29,185,84,0.3);
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #f9fff9, #eafaf0);
+    color: #111;
+    text-align: center;
+    padding: 20px;
+    transition: background 0.5s, color 0.5s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  body[data-theme='dark'] {
+    background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+    color: #fff;
+  }
+
+  .tweet-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 25px;
+    border-radius: var(--card-radius);
+    background: #fff;
+    box-shadow: var(--shadow-light);
+    transition: all 0.4s ease;
+    animation: fadeIn 0.8s ease-in-out;
+  }
+
+  body[data-theme='dark'] .tweet-card {
+    background: #181818;
+    box-shadow: var(--shadow-dark);
+  }
+
+  .tweet-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(29,185,84,0.2);
+  }
+
+  .avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    border: 3px solid var(--primary);
+    box-shadow: 0 0 20px var(--accent);
+    transition: transform 0.3s ease;
+  }
+
+  .avatar:hover {
+    transform: scale(1.05);
+  }
+
+  h1 {
+    font-size: 1.7em;
+    margin: 8px 0;
+    color: var(--primary);
+  }
+
+  p {
+    font-size: 1em;
+    line-height: 1.6;
+    margin: 6px 0;
+  }
+
+  .donation-box {
+    margin-top: 18px;
+    background: rgba(29,185,84,0.08);
+    padding: 16px;
+    border-radius: var(--card-radius);
+    border: 1px solid rgba(29,185,84,0.3);
+    transition: background 0.4s ease;
+  }
+
+  body[data-theme='dark'] .donation-box {
+    background: rgba(29,185,84,0.15);
+  }
+
+  .donation-box h3 {
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: var(--primary);
+  }
+
+  .donation-method {
+    margin: 12px 0;
+    font-size: 0.95em;
+  }
+
+  .donation-method i {
+    color: var(--accent);
+    margin-right: 8px;
+  }
+
+  button {
+    font-family: inherit;
+  }
+
+  .copy-btn, .open-btn, .share-btn {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 8px 14px;
+    margin: 6px 4px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background 0.3s, transform 0.2s;
+  }
+
+  .copy-btn:hover, .open-btn:hover, .share-btn:hover {
+    background: #1ed760;
+    transform: scale(1.05);
+  }
+
+  .share-buttons {
+    margin-top: 15px;
+  }
+
+  .footer {
+    font-size: 0.85em;
+    margin-top: 18px;
+    color: #666;
+  }
+
+  body[data-theme='dark'] .footer {
+    color: #aaa;
+  }
+
+  @media (max-width: 600px) {
+    .tweet-card {
+      padding: 20px;
+      max-width: 95%;
+    }
+    h1 {
+      font-size: 1.4em;
+    }
+    .avatar {
+      width: 75px;
+      height: 75px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .copy-btn, .open-btn, .share-btn {
+      font-size: 0.8em;
+      padding: 6px 10px;
+    }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+
+<body>
+<div class="tweet-card">
+  <img src="https://firebasestorage.googleapis.com/v0/b/sda-music-stream-48ea6.appspot.com/o/adrich_dp.png?alt=media&token=84f172db-1030-4489-a940-88a91f06d884" class="avatar" alt="John Adrich">
+  <h1>🌿 Special Announcement</h1>
+  <p>I’m <strong>John Adrich Kasule</strong>, Founder & Lead Developer at <strong>Adrich App Studio</strong>.</p>
+  <p>We are raising <strong>$25</strong> to open a <strong>Google Developer Account</strong> to publish and update our Christian apps on the Play Store.</p>
+  <p>Your support helps us reach more believers easily!</p>
+
+  <div class="donation-box">
+    <h3>💖 How to Support</h3>
+
+    <div class="donation-method">
+      <i class="fa-solid fa-mobile-screen-button"></i>
+      <strong>MTN Mobile Money:</strong><br>
+      <span id="momo">0775716687 — Kasule John</span><br>
+      <button class="copy-btn" onclick="copyToClipboard('momo')">📋 Copy</button>
+      <a href="tel:*165*1*1*0775716687#"><button class="open-btn">💸 Open MoMo</button></a>
+    </div>
+
+    <div class="donation-method">
+      <i class="fa-solid fa-building-columns"></i>
+      <strong>DTB Bank:</strong><br>
+      <span id="dtb">7255211001 — Kasule John</span><br>
+      <button class="copy-btn" onclick="copyToClipboard('dtb')">📋 Copy</button>
+    </div>
+
+    <div class="share-buttons">
+      <button class="share-btn" onclick="shareWhatsApp()">📲 Share WhatsApp</button>
+      <button class="share-btn" onclick="shareTelegram()">✈️ Share Telegram</button>
+    </div>
+  </div>
+
+  <p class="footer">
+    Every contribution matters.<br>
+    <strong>“May the Lord bless you richly as you give.” — 2 Corinthians 9:7</strong><br>
+    <em>— John Adrich & Team</em>
+  </p>
+</div>
+
+<script>
+const hour = new Date().getHours();
+const theme = (hour >= 7 && hour < 19) ? 'light' : 'dark';
+document.body.setAttribute('data-theme', theme);
+
+function copyToClipboard(id){
+  const text = document.getElementById(id).textContent;
+  navigator.clipboard.writeText(text).then(()=>{ alert('Copied: '+text); });
+}
+
+function shareWhatsApp() {
+  const message = encodeURIComponent("Join me in supporting Adrich App Studio! We are raising $25 to open a Google Developer Account. MTN MoMo: 0775716687 - Kasule John, DTB: 7255211001. May the Lord bless you!");
+  window.open(`https://wa.me/?text=${message}`, '_blank');
+}
+
+function shareTelegram() {
+  const message = encodeURIComponent("Join me in supporting Adrich App Studio! We are raising $25 to open a Google Developer Account. MTN MoMo: 0775716687 - Kasule John, DTB: 7255211001. May the Lord bless you!");
+  window.open(`https://t.me/share/url?url=${message}`, '_blank');
+}
+</script>
+</body>
+</html>
