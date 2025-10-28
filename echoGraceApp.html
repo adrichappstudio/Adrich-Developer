@@ -45,46 +45,53 @@
     backdrop-filter: blur(8px);
     position: relative;
     overflow: hidden;
+    animation: fadeIn 1.5s ease;
   }
 
-  .container::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, rgba(29,185,84,0.12), rgba(0,255,179,0.12));
-    opacity: 0.4;
-    pointer-events: none;
+  @keyframes fadeIn {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
   }
 
   header {
     display: flex;
     align-items: center;
     gap: 16px;
+    text-align: left;
   }
 
   header img {
-    width: 72px;
-    height: 72px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     border: 3px solid var(--accent);
-    box-shadow: 0 0 12px rgba(0,255,179,0.3);
+    box-shadow: 0 0 16px rgba(0,255,179,0.3);
   }
 
   header h1 {
     margin: 0;
-    font-size: 1.8rem;
+    font-size: 1.9rem;
     font-weight: 700;
     color: #fff;
   }
 
+  .tagline {
+    margin-top: 4px;
+    font-size: 1rem;
+    color: var(--accent);
+    font-style: italic;
+    animation: fadeIn 2s ease-in-out;
+  }
+
   header p {
-    margin: 2px 0 0;
+    margin: 4px 0 0;
     color: var(--text-muted);
     font-size: 0.9rem;
   }
 
   main {
     margin-top: 32px;
+    text-align: center;
   }
 
   .headline h2 {
@@ -101,6 +108,7 @@
 
   .countdown {
     display: flex;
+    justify-content: center;
     gap: 16px;
     margin: 24px 0;
     flex-wrap: wrap;
@@ -129,6 +137,7 @@
   .features {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 10px;
     margin-top: 16px;
   }
@@ -145,6 +154,7 @@
   .cta {
     margin-top: 24px;
     display: flex;
+    justify-content: center;
     gap: 12px;
     flex-wrap: wrap;
   }
@@ -188,8 +198,8 @@
 
   @media (max-width: 600px) {
     .container { padding: 24px; }
-    header img { width: 60px; height: 60px; }
-    header h1 { font-size: 1.4rem; }
+    header img { width: 64px; height: 64px; }
+    header h1 { font-size: 1.5rem; }
     .headline h2 { font-size: 1.6rem; }
   }
 </style>
@@ -197,9 +207,10 @@
 <body>
   <div class="container">
     <header>
-      <img src="https://firebasestorage.googleapis.com/v0/b/sda-music-stream-48ea6.appspot.com/o/adrich_dp.png?alt=media&token=84f172db-1030-4489-a940-88a91f06d884" alt="Adrich App Studio Logo">
+      <img src="https://firebasestorage.googleapis.com/v0/b/sda-music-stream-48ea6.appspot.com/o/echoGrace.png?alt=media&token=2c61fca7-8f63-4755-8c32-59797b42c37f" alt="EchoGrace Logo">
       <div>
         <h1>EchoGrace</h1>
+        <div class="tagline">“Where the Lord’s Grace Echoes”</div>
         <p>A new gospel music app by Adrich App Studio</p>
       </div>
     </header>
@@ -210,11 +221,15 @@
         <p>All your choir songs, playlists, and lyrics — beautifully designed for believers.</p>
       </div>
 
-      <div class="countdown">
+      <div class="countdown" id="countdown">
         <div class="box"><div class="num" id="days">00</div><div class="lbl">Days</div></div>
         <div class="box"><div class="num" id="hours">00</div><div class="lbl">Hours</div></div>
         <div class="box"><div class="num" id="mins">00</div><div class="lbl">Minutes</div></div>
         <div class="box"><div class="num" id="secs">00</div><div class="lbl">Seconds</div></div>
+      </div>
+
+      <div id="launch-message" style="display:none;text-align:center;font-size:1.3rem;color:var(--primary);margin-top:12px;">
+        🎉 EchoGrace is Live! Download coming soon!
       </div>
 
       <div class="features">
@@ -225,7 +240,7 @@
       </div>
 
       <div class="cta">
-        <button class="btn btn-primary" onclick="document.getElementById('email').focus()">Join the Waitlist</button>
+        <button class="btn btn-primary" onclick="alert('Thanks! You’ll be notified at launch.')">Join the Waitlist</button>
         <button class="btn btn-outline" onclick="alert('Preview coming soon!')">Preview Screens</button>
       </div>
     </main>
@@ -239,22 +254,32 @@
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Countdown (10 days)
-    const target = new Date();
-    target.setDate(target.getDate() + 10);
+    // ======= REAL COUNTDOWN =======
+    const launchDate = new Date("2025-11-10T00:00:00");
+
     function updateCountdown() {
-      const diff = target - new Date();
-      if (diff <= 0) return;
+      const now = new Date().getTime();
+      const diff = launchDate.getTime() - now;
+
+      if (diff <= 0) {
+        document.getElementById("countdown").style.display = "none";
+        document.getElementById("launch-message").style.display = "block";
+        clearInterval(timer);
+        return;
+      }
+
       const d = Math.floor(diff / (1000 * 60 * 60 * 24));
       const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
       const m = Math.floor((diff / (1000 * 60)) % 60);
       const s = Math.floor((diff / 1000) % 60);
-      document.getElementById("days").textContent = String(d).padStart(2, '0');
-      document.getElementById("hours").textContent = String(h).padStart(2, '0');
-      document.getElementById("mins").textContent = String(m).padStart(2, '0');
-      document.getElementById("secs").textContent = String(s).padStart(2, '0');
+
+      document.getElementById("days").textContent = d.toString().padStart(2, '0');
+      document.getElementById("hours").textContent = h.toString().padStart(2, '0');
+      document.getElementById("mins").textContent = m.toString().padStart(2, '0');
+      document.getElementById("secs").textContent = s.toString().padStart(2, '0');
     }
-    setInterval(updateCountdown, 1000);
+
+    const timer = setInterval(updateCountdown, 1000);
     updateCountdown();
   </script>
 </body>
